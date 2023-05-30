@@ -25,56 +25,66 @@ class ProductCard extends StatelessWidget {
             backgroundColor: Colors.transparent,
             builder: (context) => Container(
               width: 300,
-              height: 300,
+              height: 600,
               color: Colors.amber,
               child: Column(
                 children: [
-                  RichText(
-                    text: const TextSpan(text: "oof"),
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: RichText(
+                      text: TextSpan(text: product.description),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Product name
-              Text(
-                product.name,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-
-              // Show description
-              Text(product.description),
-              const SizedBox(height: 8.0),
-
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Show stock of product
-                  Text(
-                    'Stock: ${product.stock}',
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  SizedBox(
+                      width: 125,
+                      child: Image.asset('assets/pics/product/${product.img}')),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Product name
+                      Text(
+                        product.name,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
 
-                  // Add to Cart Button
-                  ElevatedButton(
-                    onPressed: onAddToCart,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.white, // Set background color to white
-                    ),
-                    child: const Text('Add to Cart'),
+                      // Show description
+                      Text(product.shorttext),
+                      const SizedBox(height: 8.0),
+
+                      Text(
+                        'Stock: ${product.stock}',
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
+              ),
+              // Add to Cart Button
+              ElevatedButton(
+                onPressed: onAddToCart,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.yellow.shade300, // Set background color to white
+                ),
+                child: const Text('+'),
               ),
             ],
           ),

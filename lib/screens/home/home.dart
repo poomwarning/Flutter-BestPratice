@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _productFuture = AppDatabase.getProducts();
   }
 
-  void _reloadProducts() {
+  void _reloadProducts() async {
     setState(() {
       _productFuture = AppDatabase.getProducts();
     });
@@ -59,10 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Perform logout functionality here
                   // You can add your own logic for logging out the user.
                   Navigator.pop(context);
-                } else if (value == 'reload') {
-                  // Perform logout functionality here
-                  // You can add your own logic for logging out the user.
-                  _reloadProducts();
                 }
               },
               icon: Row(
@@ -80,17 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               itemBuilder: (BuildContext context) => [
                 // Cart Button
-                const PopupMenuItem<String>(
-                  value: 'reload',
-                  child: Row(
-                    children: [
-                      Icon(Icons.replay),
-                      SizedBox(width: 8.0),
-                      Text('Reload'),
-                    ],
-                  ),
-                ),
-
                 const PopupMenuItem<String>(
                   value: 'cart',
                   child: Row(

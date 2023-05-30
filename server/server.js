@@ -76,7 +76,7 @@ app.delete("/product/:id", async (req, res) => {
   res.json({message: "Product deleted successfully"});
 });
 
-//? CRUD Order table
+//? CRUD Order table 
 const orderTable = "orders";
 
 // CREATE - Add a order

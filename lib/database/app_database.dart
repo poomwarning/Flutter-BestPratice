@@ -10,17 +10,6 @@ class AppDatabase {
   static const String _baseUrl =
       kIsWeb ? 'http://localhost:3000' : 'http://10.0.2.2:3000';
 
-  //? Product helper
-  static Future<void> createProduct(Product product) async {
-    await http.post(
-      Uri.parse('$_baseUrl/product'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: product.toJson(),
-    );
-  }
-
   static Future<List<Product>> getProducts() async {
     final response = await http.get(Uri.parse('$_baseUrl/product'));
 
@@ -102,36 +91,6 @@ class AppDatabase {
       },
       body: order.toJson(),
     );
-  }
-
-  //? Cart helper
-  static Future<List<Order>> getReadOnlyUserCart(int? userId) async {
-    // If user ID is null, then return empty list
-    if (userId == null) return [];
-
-    final orders = await getOrders();
-
-    // Filter orders by user ID and status which unpaid as carts
-    List<Order> carts = [];
-
-    List<String> productname = [];
-    for (Order order in orders) {
-      if (order.userId == userId && order.status == 'unpaid') {
-        carts.add(order);
-      }
-    }
-    List<Order> finalcarts = [];
-    for (Order order in carts) {
-      if (!productname.contains(order.product.name)) {
-        productname.add(order.product.name);
-        int x = carts
-            .where((element) => element.product.name == order.product.name)
-            .length;
-        order.quantity = x;
-        finalcarts.add(order);
-      }
-    }
-    return finalcarts;
   }
 
   static Future<List<Order>> getUserCart(int? userId) async {

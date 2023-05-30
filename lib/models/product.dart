@@ -5,6 +5,7 @@ class Product {
   final String name;
   final String img;
   final String description;
+  final String shorttext;
   final double price;
   int stock;
 
@@ -13,6 +14,7 @@ class Product {
     required this.name,
     required this.img,
     required this.description,
+    required this.shorttext,
     required this.price,
     this.stock = 0,
   });
@@ -22,6 +24,7 @@ class Product {
     String? name,
     String? img,
     String? description,
+    String? shorttext,
     double? price,
     int? stock,
   }) {
@@ -30,6 +33,7 @@ class Product {
       name: name ?? this.name,
       img: img ?? this.img,
       description: description ?? this.description,
+      shorttext: shorttext ?? this.shorttext,
       price: price ?? this.price,
       stock: stock ?? this.stock,
     );
@@ -41,6 +45,7 @@ class Product {
       'name': name,
       'img': img,
       'description': description,
+      'short_txt': shorttext,
       'price': price,
       'stock': stock,
     };
@@ -52,6 +57,7 @@ class Product {
       name: map['name'] as String,
       img: map['img'] as String,
       description: map['description'] as String,
+      shorttext: map['short_txt'] as String,
       price: map['price'].runtimeType != double
           ? double.parse(map['price'])
           : map['price'] as double,
@@ -61,6 +67,6 @@ class Product {
 
   String toJson() => json.encode(toMap());
 
-  factory Product.fromJson(String source) =>
-      Product.fromMap(json.decode(source) as Map<String, dynamic>);
+  // factory Product.fromJson(String source) =>
+  //     Product.fromMap(json.decode(source) as Map<String, dynamic>);
 }

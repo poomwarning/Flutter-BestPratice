@@ -68,81 +68,91 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
             color: Colors.white,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              // Logo
-              Image.asset("assets/pics/logo.png"),
-              const SizedBox(height: 50.0),
-              if (validationLogin)
-                RichText(
-                    text: const TextSpan(
-                        text: "*Username or Password incorrect",
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold))),
-              const SizedBox(height: 5.0),
-              // Username Field
-              TextFormField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                // Logo
+                Image.asset("assets/pics/logo.png"),
 
-              // Password Field
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              const SizedBox(height: 20.0),
-
-              // Login Button
-              ElevatedButton(
-                onPressed: login,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 15.0),
-                ),
-                child: const SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    'Login',
-                    style: TextStyle(color: Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10.0),
-
-              // Register Button
-              TextButton(
-                onPressed: () {
-                  // Implement register button functionality here
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterScreen(),
+                const SizedBox(height: 50.0),
+                if (validationLogin)
+                  RichText(
+                      text: const TextSpan(
+                          text: "*Username or Password incorrect",
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold))),
+                const SizedBox(height: 5.0),
+                // Username Field
+                TextFormField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                  );
-                },
-                child: const Text('Don’t have an account? Sign up'),
-              ),
-            ],
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+
+                // Password Field
+                TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+
+                // Login Button
+                ElevatedButton(
+                  onPressed: login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  ),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.black),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+
+                // Register Button
+                TextButton(
+                  onPressed: () {
+                    // Implement register button functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('Don’t have an account? Sign up'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
